@@ -4,9 +4,13 @@ on:
   push:
     branches:
       - master
+    paths:
+      - 'src/api/**'
   pull_request:
     branches:
       - master
+    paths:
+      - 'src/api/**'
 
 jobs:
   build_and_test_sln:
