@@ -6,7 +6,8 @@
 [See requirements](https://github.com/iulianPeiu6/xpand/blob/master/docs/requirements.pdf)
 
 ### DONE:
-- Add Quality Check github workflow action (Build, Test, SonarCloud Analysis).
+- Init Repo. Init Solution.
+- Configure CI. Add Quality Check github workflow action (Build, Test, SonarCloud Analysis).
 - [DB Modeling](https://github.com/iulianPeiu6/xpand/blob/master/docs/db-diagram.png).
 
 ### TODO: 
