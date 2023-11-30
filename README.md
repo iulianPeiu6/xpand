@@ -8,7 +8,7 @@
 ### DONE:
 - Init Repo. Init Solution.
 - Configure CI. Add Quality Check github workflow action (Build, Test, SonarCloud Analysis).
-- [DB Modeling](https://github.com/iulianPeiu6/xpand/blob/master/docs/db-diagram.png).
+- [DB Modeling](https://github.com/iulianPeiu6/xpand/blob/master/docs/db-diagram.png). [dbdiagram.io](https://dbdiagram.io/d/6568b9433be149578711d7fe)
 
 ### TODO: 
 - Create PlanetExplorationManagement API:
