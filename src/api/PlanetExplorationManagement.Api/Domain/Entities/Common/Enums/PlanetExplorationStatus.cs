@@ -2,7 +2,7 @@
 
 namespace Domain.Entities.Common.Enums
 {
-    public enum PlanetExplorationStatus : int
+    public enum PlanetExplorationStatus
     {
         [Description("OK")]
         Ok = 1,

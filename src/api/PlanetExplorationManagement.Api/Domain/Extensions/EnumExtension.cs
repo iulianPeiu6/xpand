@@ -17,14 +17,14 @@ namespace Domain.Extensions
 
             if (field is null)
             {
-                throw new NullReferenceException(nameof(field));
+                throw new ArgumentException($"'{@enum}' enum value is invalid. Does not exist.");
             }
 
             var attributes = (DescriptionAttribute[])field.GetCustomAttributes(typeof(DescriptionAttribute), false);
 
             if (attributes.Any())
             {
-                description = attributes.First().Description;
+                description = attributes[0].Description;
             }
 
             return description;
