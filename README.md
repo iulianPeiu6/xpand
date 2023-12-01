@@ -12,6 +12,7 @@
 
 ### TODO: 
 - Create PlanetExplorationManagement API:
+  - Add health check
   - GET /v1/planet-explorations
   - GET /v1/planet-explorations/{planetExplorationId}
   - POST /v1/planet-explorations
