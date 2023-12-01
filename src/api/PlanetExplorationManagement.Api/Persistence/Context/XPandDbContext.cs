@@ -22,7 +22,7 @@ namespace Persistence.Context
             SeedData(modelBuilder);
         }
 
-        private void SeedData(ModelBuilder modelBuilder)
+        private static void SeedData(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<PlanetExplorationStatus>().HasData(
                 new PlanetExplorationStatus(Domain.Entities.Common.Enums.PlanetExplorationStatus.Ok.GetDescription())
