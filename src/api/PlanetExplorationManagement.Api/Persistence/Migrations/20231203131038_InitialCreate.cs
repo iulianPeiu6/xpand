@@ -48,7 +48,8 @@ namespace Persistence.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     PlanetId = table.Column<int>(type: "int", nullable: false),
                     PlanetExplorationStatusId = table.Column<int>(type: "int", nullable: false),
-                    CaptainId = table.Column<int>(type: "int", nullable: false),
+                    CaptainId = table.Column<int>(type: "int", nullable: true),
+                    Observations = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreatedBy = table.Column<int>(type: "int", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdatedBy = table.Column<int>(type: "int", nullable: true),
@@ -100,11 +101,53 @@ namespace Persistence.Migrations
                     { 4, "En route" }
                 });
 
+            migrationBuilder.InsertData(
+                table: "Planets",
+                columns: new[] { "PlanetId", "CreatedAt", "CreatedBy", "Description", "Image", "Name", "UpdatedAt", "UpdatedBy" },
+                values: new object[,]
+                {
+                    { 1, new DateTime(2021, 9, 24, 15, 10, 38, 421, DateTimeKind.Local).AddTicks(4501), 1, null, null, "TAU 23", null, null },
+                    { 2, new DateTime(2022, 4, 7, 15, 10, 38, 421, DateTimeKind.Local).AddTicks(4533), 2, null, null, "ZETTA 7", null, null },
+                    { 3, new DateTime(2022, 7, 15, 15, 10, 38, 421, DateTimeKind.Local).AddTicks(4534), 3, null, null, "SIGMA 17", null, null },
+                    { 4, new DateTime(2022, 10, 23, 15, 10, 38, 421, DateTimeKind.Local).AddTicks(4536), 3, null, null, "KAPPA 44", null, null },
+                    { 5, new DateTime(2023, 1, 31, 15, 10, 38, 421, DateTimeKind.Local).AddTicks(4537), 4, null, null, "RUKA 23", null, null }
+                });
+
+            migrationBuilder.InsertData(
+                table: "PlanetExplorations",
+                columns: new[] { "PlanetExplorationId", "CaptainId", "CreatedAt", "CreatedBy", "Observations", "PlanetExplorationStatusId", "PlanetId", "UpdatedAt", "UpdatedBy" },
+                values: new object[,]
+                {
+                    { 1, 1, new DateTime(2022, 1, 2, 15, 10, 38, 421, DateTimeKind.Local).AddTicks(4552), 1, "While visiting this planet, the robots have uncovered various forms of life", 1, 1, null, null },
+                    { 2, 2, new DateTime(2022, 5, 17, 15, 10, 38, 421, DateTimeKind.Local).AddTicks(4555), 2, "0.2% nutrients in the soil. Unfortunately than cannot sustain life", 2, 2, null, null },
+                    { 3, null, new DateTime(2022, 7, 21, 15, 10, 38, 421, DateTimeKind.Local).AddTicks(4556), 3, "No description yet :/", 4, 3, null, null },
+                    { 4, 3, new DateTime(2022, 10, 29, 15, 10, 38, 421, DateTimeKind.Local).AddTicks(4558), 3, "We've found another sapient species and have engaged in communication", 1, 4, null, null },
+                    { 5, 4, new DateTime(2023, 2, 6, 15, 10, 38, 421, DateTimeKind.Local).AddTicks(4559), 4, "Just a guge floating rock", 2, 5, null, null }
+                });
+
+            migrationBuilder.InsertData(
+                table: "PlanetExplorationRobots",
+                columns: new[] { "PlanetExplorationId", "RobotId" },
+                values: new object[,]
+                {
+                    { 1, 72 },
+                    { 1, 315 },
+                    { 1, 345 },
+                    { 1, 2011 },
+                    { 2, 21 },
+                    { 2, 88 },
+                    { 4, 33 },
+                    { 5, 18 },
+                    { 5, 74 },
+                    { 5, 88 },
+                    { 5, 203 },
+                    { 5, 507 }
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_PlanetExplorations_PlanetExplorationStatusId",
                 table: "PlanetExplorations",
-                column: "PlanetExplorationStatusId",
-                unique: true);
+                column: "PlanetExplorationStatusId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_PlanetExplorations_PlanetId",

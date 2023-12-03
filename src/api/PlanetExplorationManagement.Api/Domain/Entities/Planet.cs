@@ -11,12 +11,5 @@
         public int? UpdatedBy { get; set; }
         public DateTime? UpdatedAt { get; set; }
         public PlanetExploration PlanetExploration { get; set; }
-
-        public Planet(string name, int createdBy)
-        {
-            Name = name;
-            CreatedBy = createdBy;
-            CreatedAt = DateTime.UtcNow;
-        }
     }
 }

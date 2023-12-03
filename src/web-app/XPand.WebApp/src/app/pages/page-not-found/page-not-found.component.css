@@ -1,0 +1,9 @@
+.page-not-found-container {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.page-not-found-message {
+  font-size: 3em;
+  color: #d9534f;
+}
