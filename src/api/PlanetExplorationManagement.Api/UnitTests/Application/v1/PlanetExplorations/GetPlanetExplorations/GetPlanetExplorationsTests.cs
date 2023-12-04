@@ -20,11 +20,12 @@ namespace PlanetExplorationManagement.Api.UnitTests.Application.v1.PlanetExplora
 
             var planetExplorationsData = new List<PlanetExploration>
             {
-                new PlanetExploration {  },
-                new PlanetExploration {  }
+                new PlanetExploration { /* Populate properties for testing */ },
+                new PlanetExploration { /* Populate properties for testing */ }
             };
 
-            dataProvider.Setup(dp => dp.Query<PlanetExploration>()).Returns(planetExplorationsData.AsQueryable());
+            var queryable = planetExplorationsData.AsQueryable();
+            dataProvider.Setup(dp => dp.Query<PlanetExploration>()).Returns(queryable);
 
             // Act
             var result = await handler.Handle(request, CancellationToken.None);
