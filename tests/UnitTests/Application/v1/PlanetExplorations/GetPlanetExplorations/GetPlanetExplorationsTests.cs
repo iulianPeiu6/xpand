@@ -36,17 +36,17 @@ namespace PlanetExplorationManagement.Api.UnitTests.Application.v1.PlanetExplora
             result.PlanetExplorations.Should().HaveCount(5);
             var firstPlanetExploration = result.PlanetExplorations.FirstOrDefault();
             firstPlanetExploration.Should().NotBeNull();
-            firstPlanetExploration.PlanetExplorationId.Should().BeGreaterThan(0);
-            firstPlanetExploration.PlanetId.Should().BeGreaterThan(0);
-            firstPlanetExploration.PlanetName.Should().NotBeNullOrEmpty();
-            firstPlanetExploration.PlanetImage.Should().NotBeNull();
-            firstPlanetExploration.Observations.Should().NotBeNullOrEmpty();
-            firstPlanetExploration.PlanetExplorationStatusId.Should().NotBe(0);
-            firstPlanetExploration.Captain.Should().NotBeNull();
-            firstPlanetExploration.Captain.UserId.Should().BeGreaterThan(0);
-            firstPlanetExploration.Robots.Should().NotBeNull();
-            firstPlanetExploration.Robots.Should().HaveCountGreaterThan(0);
-            firstPlanetExploration.Robots.All(robot => robot.UserId > 0).Should().BeTrue();
+            firstPlanetExploration?.PlanetExplorationId.Should().BeGreaterThan(0);
+            firstPlanetExploration?.PlanetId.Should().BeGreaterThan(0);
+            firstPlanetExploration?.PlanetName.Should().NotBeNullOrEmpty();
+            firstPlanetExploration?.PlanetImage.Should().NotBeNull();
+            firstPlanetExploration?.Observations.Should().NotBeNullOrEmpty();
+            firstPlanetExploration?.PlanetExplorationStatusId.Should().NotBe(0);
+            firstPlanetExploration?.Captain.Should().NotBeNull();
+            firstPlanetExploration?.Captain.UserId.Should().BeGreaterThan(0);
+            firstPlanetExploration?.Robots.Should().NotBeNull();
+            firstPlanetExploration?.Robots.Should().HaveCountGreaterThan(0);
+            firstPlanetExploration?.Robots.All(robot => robot.UserId > 0).Should().BeTrue();
         }
     }
 }
