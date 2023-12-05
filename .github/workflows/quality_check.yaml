@@ -27,7 +27,7 @@ jobs:
 
     - name: Install .NET Framework 4.7.2 Developer Pack
       run: |
-        wget https://download.visualstudio.microsoft.com/download/pr/100349019/15288dd9cf9a700235479ccf15cb096d/ndp472-devpack-enu.exe
+        wget https://dotnet.microsoft.com/download/dotnet-framework/thank-you/net472-developer-pack-offline-installer
         chmod +x ndp472-devpack-enu.exe
         ./ndp472-devpack-enu.exe /quiet /norestart
 
