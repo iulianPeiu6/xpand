@@ -32,7 +32,7 @@ jobs:
       run: dotnet build ./src/api/PlanetExplorationManagement.Api/PlanetExplorationManagement.Api/PlanetExplorationManagement.Api.csproj --configuration Release
 
     - name: Run Tests
-      run: dotnet test ./tests/UnitTests/UnitTests.csproj --configuration Release --no-build
+      run: dotnet test ./tests/UnitTests/UnitTests.csproj --configuration Release
   analyze_sln:
     name: Analyze Solution
     runs-on: windows-latest
