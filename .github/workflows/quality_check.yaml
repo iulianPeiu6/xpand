@@ -20,16 +20,18 @@ jobs:
     - name: Checkout Repository
       uses: actions/checkout@v2
 
-    - name: Setup .NET 6.0.x
+    - name: Setup .NET
       uses: actions/setup-dotnet@v3
       with:
         dotnet-version: '6.0.x'
 
-    - name: Install .NET Framework 4.7.2 Developer Pack
+    - name: Install Chocolatey
       run: |
-        wget https://download.visualstudio.microsoft.com/download/pr/100349019/15288dd9cf9a700235479ccf15cb096d/ndp472-devpack-enu.exe
-        chmod +x ndp472-devpack-enu.exe
-        ./ndp472-devpack-enu.exe /quiet /norestart
+        Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
+
+    - name: Install .NET Framework 4.7.2 Developer Pack
+      run: choco install dotnet-472-developer-pack -y
+
 
     - name: Restore Dependencies
       run: dotnet restore
