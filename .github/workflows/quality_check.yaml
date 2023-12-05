@@ -25,19 +25,11 @@ jobs:
       with:
         dotnet-version: '6.0.x'
 
-    - name: Install .NET Framework 4.7.2 Developer Pack
-      run: |
-        wget https://download.microsoft.com/download/dotnet/Framework/net472/ndp472-devpack-kb4054560-x86-x64-all.zip
-        unzip ndp472-devpack-kb4054560-x86-x64-all.zip
-        chmod +x ndp472-devpack-enu.exe
-        sudo ./ndp472-devpack-enu.exe /quiet /norestart
-
-
     - name: Restore Dependencies
       run: dotnet restore
 
     - name: Build Solution
-      run: dotnet build --configuration Release
+      run: dotnet build ./src/api/PlanetExplorationManagement.Api/PlanetExplorationManagement.Api/PlanetExplorationManagement.Api.csproj --configuration Release
 
     - name: Run Tests
       run: dotnet test --configuration Release --no-build
