@@ -28,6 +28,7 @@ jobs:
     - name: Install Chocolatey
       run: |
         Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
+        refreshenv
 
     - name: Install .NET Framework 4.7.2 Developer Pack
       run: choco install dotnet-472-developer-pack -y
