@@ -27,10 +27,9 @@ jobs:
 
     - name: Install .NET Framework 4.7.2 Developer Pack
       run: |
-        wget https://dotnet.microsoft.com/download/dotnet-framework/thank-you/net472-developer-pack-offline-installer
-        ls -R
-        chmod +x net472-developer-pack-offline-installer
-        ./net472-developer-pack-offline-installer /quiet /norestart
+        wget https://download.visualstudio.microsoft.com/download/pr/100349019/15288dd9cf9a700235479ccf15cb096d/ndp472-devpack-enu.exe
+        chmod +x ndp472-devpack-enu.exe
+        ./ndp472-devpack-enu.exe /quiet /norestart
 
     - name: Restore Dependencies
       run: dotnet restore
