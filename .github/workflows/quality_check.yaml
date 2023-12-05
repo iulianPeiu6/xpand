@@ -28,7 +28,7 @@ jobs:
     - name: Install .NET Framework 4.7.2 Developer Pack
       run: |
         wget https://dotnet.microsoft.com/download/dotnet-framework/thank-you/net472-developer-pack-offline-installer
-        ls
+        ls -R
         chmod +x ndp472-devpack-enu.exe
         ./ndp472-devpack-enu.exe /quiet /norestart
 
