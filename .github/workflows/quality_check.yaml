@@ -20,7 +20,7 @@ jobs:
     - name: Checkout Repository
       uses: actions/checkout@v2
 
-    - name: Setup .NET
+    - name: Setup .NET 6.0.x
       uses: actions/setup-dotnet@v3
       with:
         dotnet-version: '6.0.x'
@@ -29,8 +29,8 @@ jobs:
       run: |
         wget https://dotnet.microsoft.com/download/dotnet-framework/thank-you/net472-developer-pack-offline-installer
         ls -R
-        chmod +x ndp472-devpack-enu.exe
-        ./ndp472-devpack-enu.exe /quiet /norestart
+        chmod +x net472-developer-pack-offline-installer
+        ./net472-developer-pack-offline-installer /quiet /norestart
 
     - name: Restore Dependencies
       run: dotnet restore
