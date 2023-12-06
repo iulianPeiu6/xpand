@@ -1,0 +1,59 @@
+.mat-toolbar {
+  position: fixed;
+  z-index: 1; 
+  background-color: #a25661;
+}
+
+.planet-exploration-cards {
+  padding-top: 4rem;
+}
+
+.toolbar-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: white;
+}
+
+.planet-exploration-card {
+  max-width: 25rem;
+  justify-content: center;
+  margin: 1rem;
+}
+
+.planet-exploration-card-row {
+  padding: 0 0 0.5rem 1rem;
+}
+
+.mid-container {
+  width: 100%;
+  padding: 0 1rem;
+}
+
+.captain-info {
+  font-size: smaller;
+}
+
+.robots-info {
+  font-size: smaller;
+}
+
+.status {
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+.status-ok {
+  color: #a1ff7a;
+}
+
+.status-not-ok {
+  color: #bc6f73;
+}
+
+.status-en-route {
+  color: #aeb0b0;
+}
+
+.status-todo {
+  color: blue;
+}

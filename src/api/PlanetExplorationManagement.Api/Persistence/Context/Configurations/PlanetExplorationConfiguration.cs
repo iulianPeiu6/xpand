@@ -11,7 +11,7 @@ namespace Persistence.Context.Configurations
             builder.HasKey(pe => pe.PlanetExplorationId);
             builder.Property(pe => pe.PlanetId).IsRequired();
             builder.Property(pe => pe.PlanetExplorationStatusId).IsRequired();
-            builder.Property(pe => pe.CaptainId).IsRequired();
+            builder.HasIndex(pe => pe.PlanetExplorationStatusId).IsUnique(false);
             builder.Property(pe => pe.CreatedBy).IsRequired();
             builder.Property(pe => pe.CreatedAt).IsRequired();
 

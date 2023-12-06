@@ -1,0 +1,44 @@
+<div>
+  <mat-toolbar color="primary" fxLayout="row" fxLayoutAlign="center center">
+    <span class="toolbar-title">Xpand</span>
+  </mat-toolbar>
+</div>
+<div class="planet-exploration-cards" fxLayout="row wrap" fxLayoutAlign="center">
+  <mat-card class="planet-exploration-card" *ngFor="let exploration of planetExplorations" [fxFlex]="getFlexBasis()">
+    <mat-card-content>
+      <div class="planet-exploration-card-row" fxLayout="row" fxLayoutAlign="space-between">
+        <div fxLayout="column" fxLayoutAlign="center center">
+          <div>
+            <img src="{{ getPlanetImageSrc(exploration.planetImage) }}" alt="{{ exploration.planetName }} Image">
+          </div>
+          <div class="planet-name">
+            <b>{{ exploration.planetName }}</b>
+          </div>
+        </div>
+        <div *ngIf="!(exploration.captain && exploration.robots && exploration.robots.length)" class="mid-container" fxLayout="column" fxLayoutAlign="center">
+          <div class="observations">
+            "{{ exploration.observations }}"
+          </div>
+        </div>
+        <div *ngIf="exploration.captain && exploration.robots && exploration.robots.length" class="mid-container" fxLayout="column" fxLayoutAlign="space-between">
+          <div class="observations">
+            "{{ exploration.observations }}"
+          </div>
+          <div fxLayout="column">
+            <div *ngIf="exploration.captain && exploration.captain.userId" class="captain-info">
+              <b>by captain </b> C{{ exploration.captain.userId }}
+            </div>
+            <div *ngIf="exploration.robots && exploration.robots.length" class="robots-info">
+              <b>Robots: </b> {{ getRobots(exploration.robots) }}
+            </div>
+          </div>
+        </div>
+        <div fxLayout="column" fxLayoutAlign="center end">
+          <div [class]="['status', getStatusStyleClass(exploration.planetExplorationStatusId)]">
+            {{ getPlanetExplorationStatusLabel(exploration.planetExplorationStatusId) }}
+          </div>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>
