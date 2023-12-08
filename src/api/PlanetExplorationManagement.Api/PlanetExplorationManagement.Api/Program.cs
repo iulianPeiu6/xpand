@@ -1,5 +1,6 @@
 using Application;
 using Carter;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Persistence;
 
 var allowedSpecificOrigins = "allowedSpecificOrigins";
@@ -17,6 +18,15 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddHealthChecks();
 builder.Services.AddCarter();
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+}).AddJwtBearer(options =>
+{
+    options.Authority = $"https://{builder.Configuration["Auth0:Domain"]}/";
+    options.Audience = builder.Configuration["Auth0:Audience"];
+});
 builder.Services.AddPersistence(builder.Configuration);
 builder.Services.AddApplication();
 
@@ -29,7 +39,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
+app.UseAuthentication();
 app.MapCarter();
 app.UseCors(allowedSpecificOrigins);
 

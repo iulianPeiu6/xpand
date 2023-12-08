@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PlanetExplorationsService } from '../../core/http/planet-explorations/planet-explorations.service';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { AuthService } from '@auth0/auth0-angular';
 
 @Component({
   selector: 'planet-explorations',
