@@ -1,0 +1,28 @@
+<mat-toolbar class="toolbar" fxLayout="row" fxLayoutAlign="space-between center">
+  <span class="toolbar-title">Xpand</span>
+
+  <div *ngIf="(auth.isAuthenticated$ | async) === true">
+    <div *ngIf="auth.user$ | async as user">
+      <button mat-button [matMenuTriggerFor]="menu">
+        <div fxLayout="row" fxAlign="center center">
+          <img *ngIf="user.picture" [src]="user.picture" alt="Profile" class="profile-image">
+          <div>
+            {{ user.name }}
+          </div>
+          <mat-icon>arrow_drop_down</mat-icon>
+        </div>
+      </button>
+      <mat-menu #menu="matMenu" xPosition="before">
+        <button mat-menu-item (click)="onLogout()">
+          <mat-icon>logout</mat-icon>
+          Logout
+        </button>
+      </mat-menu>
+    </div>
+    
+  </div>
+
+  <button mat-button *ngIf="(auth.isAuthenticated$ | async) === false" (click)="onLogin()">
+    Login
+  </button>
+</mat-toolbar>

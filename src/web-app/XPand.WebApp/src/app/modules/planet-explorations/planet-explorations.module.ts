@@ -4,7 +4,6 @@ import { PlanetExplorationsRoutingModule } from './planet-explorations-routing.m
 import { MatCardModule } from '@angular/material/card';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { PlanetExplorationsComponent } from './planet-explorations.component';
-import { MatToolbarModule } from '@angular/material/toolbar';
 
 
 @NgModule({
@@ -15,7 +14,6 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     CommonModule,
     MatCardModule,
     FlexLayoutModule,
-    MatToolbarModule,
     PlanetExplorationsRoutingModule,
   ],
 })

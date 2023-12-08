@@ -5,12 +5,12 @@ import { PlanetExplorationsComponent } from './planet-explorations.component';
 const routes: Routes = [
   { 
     path: '', 
-    component: PlanetExplorationsComponent 
+    component: PlanetExplorationsComponent
   },
   { 
     path: 'planet-explorations', 
-    component: PlanetExplorationsComponent 
-  },
+    component: PlanetExplorationsComponent
+  }
 ];
 
 @NgModule({
