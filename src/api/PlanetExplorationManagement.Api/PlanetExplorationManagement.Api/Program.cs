@@ -1,10 +1,10 @@
 using Application;
 using Carter;
+using Domain;
+using Domain.Exceptions;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Persistence;
-using Domain.Exceptions;
 using PlanetExplorationManagement.Api.Models;
-using Domain;
 using System.Net;
 
 var allowedSpecificOrigins = "allowedSpecificOrigins";

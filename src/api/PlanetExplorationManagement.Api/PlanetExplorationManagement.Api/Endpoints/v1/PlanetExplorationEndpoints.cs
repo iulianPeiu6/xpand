@@ -4,11 +4,9 @@ using Carter;
 using Domain.Entities;
 using Domain.Exceptions;
 using MediatR;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using System.Net;
 
@@ -40,9 +38,6 @@ namespace PlanetExplorationManagement.Api.Endpoints.v1
                     using var sr = new StreamReader(context.Request.Body);
                     var rawJsonRequestBody = await sr.ReadToEndAsync();
                     var patchDocument = JsonConvert.DeserializeObject<JsonPatchDocument<PlanetExploration>>(rawJsonRequestBody);
-                    var user = context.User;
-
-                    var jwtBearerOptions = context.RequestServices.GetRequiredService<IOptions<JwtBearerOptions>>().Value;
                     var authorizationResult = await authorizationService.AuthorizeAsync(context.User, "CanUpdatePlanetExploration");
 
                     if (!authorizationResult.Succeeded)

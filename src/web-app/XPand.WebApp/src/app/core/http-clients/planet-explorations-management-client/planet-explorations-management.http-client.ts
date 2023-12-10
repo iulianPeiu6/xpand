@@ -5,7 +5,6 @@ import apiConfig from '../api.config.json';
 import { Observable, switchMap } from 'rxjs';
 import { PatchDocument } from '../../models/patch-document.model';
 import { AuthService } from '@auth0/auth0-angular';
-import auth0Config from '../../auth/auth0.config.json';
 
 @Injectable({ 
   providedIn: 'root' 
