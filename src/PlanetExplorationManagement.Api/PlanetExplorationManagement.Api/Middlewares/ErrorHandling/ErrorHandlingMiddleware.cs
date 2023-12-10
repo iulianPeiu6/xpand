@@ -29,7 +29,7 @@ namespace PlanetExplorationManagement.Api.Middlewares.ErrorHandling
             }
         }
 
-        private void HandleApiErrorException(HttpContext context, ApiErrorException apiErrorException)
+        private static void HandleApiErrorException(HttpContext context, ApiErrorException apiErrorException)
         {
             context.Response.StatusCode = (int)apiErrorException.StatusCode;
             context.Response.WriteAsJsonAsync(new ErrorResponse
@@ -38,7 +38,7 @@ namespace PlanetExplorationManagement.Api.Middlewares.ErrorHandling
             });
         }
 
-        private void HandleUnexpectedException(HttpContext context, Exception exception)
+        private static void HandleUnexpectedException(HttpContext context, Exception exception)
         {
             context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
             context.Response.WriteAsJsonAsync(new ErrorResponse
