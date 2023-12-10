@@ -2,7 +2,6 @@
 
 namespace Domain.Exceptions
 {
-    [Serializable]
     public class ApiErrorException : Exception
     {
         public Error Error { get; set; }

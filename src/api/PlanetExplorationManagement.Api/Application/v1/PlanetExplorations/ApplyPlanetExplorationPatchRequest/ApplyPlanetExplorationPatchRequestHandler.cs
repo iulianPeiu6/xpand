@@ -29,7 +29,7 @@ namespace Application.v1.PlanetExplorations.ApplyPlanetExplorationPatchRequest
             };
         }
 
-        private void Validate(ApplyPlanetExplorationPatchRequest request)
+        private static void Validate(ApplyPlanetExplorationPatchRequest request)
         {
             var patchableProperties = new[] { $"/{nameof(PlanetExploration.PlanetExplorationStatusId)}", $"/{nameof(PlanetExploration.Observations)}" };
             var invalidPaths = request.PatchDocument.Operations

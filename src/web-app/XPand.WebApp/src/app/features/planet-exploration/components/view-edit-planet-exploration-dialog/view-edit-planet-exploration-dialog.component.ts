@@ -3,8 +3,7 @@ import {
   MAT_DIALOG_DATA,
   MatDialogRef,
 } from '@angular/material/dialog';
-import { PlanetExploration } from '../../../../core/models/planet-explorations.model';
-import { PlanetExplorationStatus } from '../../../../core/models/planet-explorations.model';
+import { PlanetExplorationStatus, PlanetExploration } from '../../../../core/models/planet-explorations.model';
 import { PlanetExplorationsService } from '../../../../core/services/planet-explorations/planet-explorations.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
