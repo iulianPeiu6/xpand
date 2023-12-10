@@ -1,6 +1,6 @@
 ﻿using Domain;
 
-namespace PlanetExplorationManagement.Api.Models
+namespace PlanetExplorationManagement.Api.Middlewares.ErrorHandling
 {
     public class ErrorResponse
     {

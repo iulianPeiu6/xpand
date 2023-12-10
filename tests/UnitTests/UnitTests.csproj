@@ -26,8 +26,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\api\PlanetExplorationManagement.Api\Application\Application.csproj" />
-    <ProjectReference Include="..\..\src\api\PlanetExplorationManagement.Api\Persistence\Persistence.csproj" />
+    <ProjectReference Include="..\..\src\PlanetExplorationManagement.Api\Persistence\Persistence.csproj" />
   </ItemGroup>
 </Project>
 

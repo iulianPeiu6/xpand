@@ -3,19 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33815.320
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PlanetExplorationManagement.Api", "src\api\PlanetExplorationManagement.Api\PlanetExplorationManagement.Api\PlanetExplorationManagement.Api.csproj", "{35D935EA-F274-4988-86C5-4FAEA1726FAA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PlanetExplorationManagement.Api", "src\PlanetExplorationManagement.Api\PlanetExplorationManagement.Api\PlanetExplorationManagement.Api.csproj", "{35D935EA-F274-4988-86C5-4FAEA1726FAA}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PlanetExplorationManagement.Api", "PlanetExplorationManagement.Api", "{6F8A3720-C091-4B54-826B-EBCB9E3C3F5C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Persistence", "src\api\PlanetExplorationManagement.Api\Persistence\Persistence.csproj", "{ACE5F623-EF07-417A-81DB-F0054A154D6C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Persistence", "src\PlanetExplorationManagement.Api\Persistence\Persistence.csproj", "{ACE5F623-EF07-417A-81DB-F0054A154D6C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "src\api\PlanetExplorationManagement.Api\Domain\Domain.csproj", "{9FDC7C67-4A63-47B7-9864-198C7C51539C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "src\PlanetExplorationManagement.Api\Domain\Domain.csproj", "{9FDC7C67-4A63-47B7-9864-198C7C51539C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application", "src\api\PlanetExplorationManagement.Api\Application\Application.csproj", "{9642A153-53CF-4AA3-B921-7C4846E82E03}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application", "src\PlanetExplorationManagement.Api\Application\Application.csproj", "{9642A153-53CF-4AA3-B921-7C4846E82E03}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebApp", "WebApp", "{52E9C4D1-EF66-48F4-94C9-59673E8EAD9A}"
 EndProject
-Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "XPand.WebApp", "src\web-app\XPand.WebApp\XPand.WebApp.esproj", "{9B7A7FCB-E789-4DE6-8D31-A36E689E9F81}"
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "XPand.WebApp", "src\XPand.WebApp\XPand.WebApp.esproj", "{9B7A7FCB-E789-4DE6-8D31-A36E689E9F81}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitTests", "tests\UnitTests\UnitTests.csproj", "{8BBC3C62-2867-4638-8498-2850703A09AB}"
 EndProject
