@@ -1,7 +1,11 @@
 using Application;
 using Carter;
+using Domain;
+using Domain.Exceptions;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Persistence;
+using PlanetExplorationManagement.Api.Models;
+using System.Net;
 
 var allowedSpecificOrigins = "allowedSpecificOrigins";
 var builder = WebApplication.CreateBuilder(args);
@@ -29,6 +33,10 @@ builder.Services.AddAuthentication(options =>
     options.Authority = $"https://{builder.Configuration["Auth0:Domain"]}/";
     options.Audience = builder.Configuration["Auth0:Audience"];
 });
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("CanUpdatePlanetExploration", policy => policy.RequireClaim("permissions", "update:planet-exploration"));
+});
 builder.Services.AddPersistence(builder.Configuration);
 builder.Services.AddApplication();
 
@@ -40,8 +48,37 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.Use(async (context, next) =>
+{
+    try
+    {
+        await next.Invoke();
+    }
+    catch (ApiErrorException apiErrorException)
+    {
+        context.Response.StatusCode = (int)apiErrorException.StatusCode;
+        await context.Response.WriteAsJsonAsync(new ErrorResponse
+        {
+            Error = apiErrorException.Error
+        });
+    }
+    catch (Exception exception)
+    {
+        context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+        await context.Response.WriteAsJsonAsync(new ErrorResponse
+        {
+            Error = new Error
+            {
+                Code = "UnexpectedError",
+                Message = exception.Message,
+            }
+        });
+    }
+});
+
 app.UseHttpsRedirection();
 app.UseAuthentication();
+app.UseAuthorization();
 app.MapCarter();
 app.UseCors(allowedSpecificOrigins);
 

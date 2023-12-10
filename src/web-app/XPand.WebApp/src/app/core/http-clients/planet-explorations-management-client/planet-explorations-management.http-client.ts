@@ -1,21 +1,35 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { PlanetExplorations } from '../../models/planet-explorations.model';
 import apiConfig from '../api.config.json';
-import { Observable } from 'rxjs';
+import { Observable, switchMap } from 'rxjs';
 import { PatchDocument } from '../../models/patch-document.model';
+import { AuthService } from '@auth0/auth0-angular';
 
 @Injectable({ 
   providedIn: 'root' 
 })
 export class PlanetExplorationsHttpClient {
-  constructor(private readonly http: HttpClient) {}
+  constructor(private readonly http: HttpClient, private readonly authService: AuthService) {}
 
   getPlanetExplorations() : Observable<PlanetExplorations> {
     return this.http.get<PlanetExplorations>(`${apiConfig.planetExplorationManagementApi.baseUrl}/planet-explorations`);
   }
 
-  patchPlanetExploration(planetExplorationId: number, pathchDoc: PatchDocument) {
-    return this.http.patch(`${apiConfig.planetExplorationManagementApi.baseUrl}/planet-explorations/${planetExplorationId}`, pathchDoc);
+  patchPlanetExploration(planetExplorationId: number, patchDoc: PatchDocument) {
+    return this.authService.getAccessTokenSilently()
+      .pipe(
+        switchMap(token => {
+          const headers = new HttpHeaders({
+            Authorization: `Bearer ${token}`,
+          });
+
+          return this.http.patch(
+            `${apiConfig.planetExplorationManagementApi.baseUrl}/planet-explorations/${planetExplorationId}`,
+            patchDoc,
+            { headers }
+          );
+        })
+      );
   }
 }
