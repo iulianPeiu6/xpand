@@ -5,12 +5,12 @@ on:
     branches:
       - master
     paths:
-      - 'src/api/**'
+      - 'src/**'
   pull_request:
     branches:
       - master
     paths:
-      - 'src/api/**'
+      - 'src/**'
 
 jobs:
   build_and_test_sln:
@@ -29,7 +29,7 @@ jobs:
       run: dotnet restore
 
     - name: Build Solution
-      run: dotnet build ./src/api/PlanetExplorationManagement.Api/PlanetExplorationManagement.Api/PlanetExplorationManagement.Api.csproj --configuration Release
+      run: dotnet build ./src/PlanetExplorationManagement.Api/PlanetExplorationManagement.Api/PlanetExplorationManagement.Api.csproj --configuration Release
 
     - name: Run Tests
       run: dotnet test ./tests/UnitTests/UnitTests.csproj --configuration Release

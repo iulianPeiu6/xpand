@@ -1,11 +1,8 @@
 using Application;
 using Carter;
-using Domain;
-using Domain.Exceptions;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Persistence;
-using PlanetExplorationManagement.Api.Models;
-using System.Net;
+using PlanetExplorationManagement.Api.Middlewares.ErrorHandling;
 
 var allowedSpecificOrigins = "allowedSpecificOrigins";
 var builder = WebApplication.CreateBuilder(args);
@@ -48,33 +45,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.Use(async (context, next) =>
-{
-    try
-    {
-        await next.Invoke();
-    }
-    catch (ApiErrorException apiErrorException)
-    {
-        context.Response.StatusCode = (int)apiErrorException.StatusCode;
-        await context.Response.WriteAsJsonAsync(new ErrorResponse
-        {
-            Error = apiErrorException.Error
-        });
-    }
-    catch (Exception exception)
-    {
-        context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
-        await context.Response.WriteAsJsonAsync(new ErrorResponse
-        {
-            Error = new Error
-            {
-                Code = "UnexpectedError",
-                Message = exception.Message,
-            }
-        });
-    }
-});
+app.UseErrorHandlingMiddleware();
 
 app.UseHttpsRedirection();
 app.UseAuthentication();
