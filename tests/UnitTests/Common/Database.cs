@@ -9,9 +9,12 @@ namespace UnitTests.Common
 
         public Database()
         {
+            var currentDirectory = Directory.GetCurrentDirectory();
+            Directory.SetCurrentDirectory("../../../../../src/api/PlanetExplorationManagement.Api/PlanetExplorationManagement.Api");
             var options = new DbContextOptionsBuilder<XPandDbContext>().UseInMemoryDatabase(Guid.NewGuid().ToString()).Options;
             Context = new XPandDbContext(options);
             Context.Database.EnsureCreated();
+            Directory.SetCurrentDirectory(currentDirectory);
         }
 
         public void Dispose()

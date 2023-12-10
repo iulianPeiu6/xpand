@@ -45,16 +45,20 @@ export class ViewEditPlanetExplorationDialogComponent {
     ];
     this.planetExplorationsService.patchPlanetExploration(this.data.planetExplorationId, pathchDoc).subscribe({
       next: (data) => {
-        this.snackBar.open('Planet exploration updated successfully!', 'Close', {
+        this.snackBar.open(`Planet exploration #${data.planetExplorationId} updated successfully!`, 'Close', {
           panelClass: ['success-snackbar']
         });
       },
       error: (error) => {
-        this.snackBar.open('Failed to update planet exploration. Please try again.', 'Close', {
-          panelClass: ['error-snackbar']
-        });
-  
-        console.error(error);
+        if (error.error) {
+          this.snackBar.open(`[${error.error.code}]: ${error.error.message}`, 'Close', {
+            panelClass: ['error-snackbar']
+          });
+        } else {
+          this.snackBar.open('Failed to update planet exploration.', 'Close', {
+            panelClass: ['error-snackbar']
+          });
+        }
       }
     });
     this.dialogRef.close(this.data);
