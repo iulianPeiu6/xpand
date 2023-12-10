@@ -57,7 +57,7 @@ namespace Persistence.Context
                 {
                     PlanetId = 1,
                     Name = "TAU 23",
-                    Image = File.ReadAllBytes("../Persistence/Context/PlanetsImages/TAU23.jpg"),
+                    Image = File.ReadAllBytes("./Context/PlanetsImages/TAU23.jpg"),
                     CreatedAt = DateTime.Now.AddDays(-800),
                     CreatedBy = 1
                 },
@@ -65,7 +65,7 @@ namespace Persistence.Context
                 {
                     PlanetId = 2,
                     Name = "ZETTA 7",
-                    Image = File.ReadAllBytes("../Persistence/Context/PlanetsImages/ZETTA7.jpg"),
+                    Image = File.ReadAllBytes("./Context/PlanetsImages/ZETTA7.jpg"),
                     CreatedAt = DateTime.Now.AddDays(-605),
                     CreatedBy = 2
                 },
@@ -73,7 +73,7 @@ namespace Persistence.Context
                 {
                     PlanetId = 3,
                     Name = "SIGMA 17",
-                    Image = File.ReadAllBytes("../Persistence/Context/PlanetsImages/SIGMA17.jpg"),
+                    Image = File.ReadAllBytes("./Context/PlanetsImages/SIGMA17.jpg"),
                     CreatedAt = DateTime.Now.AddDays(-506),
                     CreatedBy = 3
                 },
@@ -81,7 +81,7 @@ namespace Persistence.Context
                 {
                     PlanetId = 4,
                     Name = "KAPPA 44",
-                    Image = File.ReadAllBytes("../Persistence/Context/PlanetsImages/KAPPA44.jpg"),
+                    Image = File.ReadAllBytes("./Context/PlanetsImages/KAPPA44.jpg"),
                     CreatedAt = DateTime.Now.AddDays(-406),
                     CreatedBy = 3
                 },
@@ -89,7 +89,7 @@ namespace Persistence.Context
                 {
                     PlanetId = 5,
                     Name = "RUKA 23",
-                    Image = File.ReadAllBytes("../Persistence/Context/PlanetsImages/RUKA23.jpg"),
+                    Image = File.ReadAllBytes("./Context/PlanetsImages/RUKA23.jpg"),
                     CreatedAt = DateTime.Now.AddDays(-306),
                     CreatedBy = 4
                 });
@@ -139,7 +139,7 @@ namespace Persistence.Context
                     PlanetExplorationId = 5,
                     PlanetId = 5,
                     PlanetExplorationStatusId = Domain.Entities.Common.Enums.PlanetExplorationStatus.NotOk,
-                    Observations = "Just a guge floating rock",
+                    Observations = "Just a huge floating rock",
                     CaptainId = 4,
                     CreatedAt = DateTime.Now.AddDays(-300),
                     CreatedBy = 4

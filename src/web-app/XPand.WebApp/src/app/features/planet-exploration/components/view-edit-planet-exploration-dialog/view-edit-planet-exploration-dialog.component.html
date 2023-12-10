@@ -1,0 +1,28 @@
+<div class="dialog-container">
+  <h1 mat-dialog-title>{{data.planetName}}</h1>
+  <div mat-dialog-content fxLayout="column">
+    <mat-form-field>
+      <mat-label>Status</mat-label>
+      <mat-select [(value)]="data.planetExplorationStatusId">
+        @for (status of statuses; track status) {
+          <mat-option [value]="status.id">{{status.label}}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Observations</mat-label>
+      <textarea matInput
+        cdkTextareaAutosize
+        cdkAutosizeMinRows="1"
+        cdkAutosizeMaxRows="5"
+        [(ngModel)]="data.observations"
+      ></textarea>
+    </mat-form-field>
+  </div>
+  
+  <div mat-dialog-actions fxLayout="row" fxLayoutAlign="end">
+    <button mat-button (click)="onCancelClick()">Cancel</button>
+    <button mat-button (click)="onSaveClick()" cdkFocusInitial>Save</button>
+  </div>
+</div>
+

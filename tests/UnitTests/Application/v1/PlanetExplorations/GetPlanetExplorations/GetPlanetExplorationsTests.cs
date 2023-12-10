@@ -1,9 +1,7 @@
 ﻿using Application.Interfaces;
 using Application.v1.PlanetExplorations.GetPlanetExplorations;
-using Domain.Entities;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Moq;
 using UnitTests.Common;
 
 namespace PlanetExplorationManagement.Api.UnitTests.Application.v1.PlanetExplorations.GetPlanetExplorations

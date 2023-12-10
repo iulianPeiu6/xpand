@@ -1,5 +1,14 @@
+<app-toolbar></app-toolbar>
+
 <div class="planet-exploration-cards" fxLayout="row wrap" fxLayoutAlign="center">
-  <mat-card class="planet-exploration-card" *ngFor="let exploration of planetExplorations" [fxFlex]="getFlexBasis()">
+  <mat-card class="planet-exploration-card" 
+    *ngFor="let exploration of planetExplorations" 
+    [fxFlex]="getFlexBasis()"
+    (mouseenter)="exploration.isHovered = true;"
+    (mouseleave)="exploration.isHovered = false;"
+    (click)="onCardClick(exploration)"
+    [class.selected-card]="selectedCard === exploration || exploration.isHovered"
+  >
     <mat-card-content>
       <div class="planet-exploration-card-row" fxLayout="row" fxLayoutAlign="space-between">
         <div fxLayout="column" fxLayoutAlign="center center">
@@ -37,3 +46,5 @@
     </mat-card-content>
   </mat-card>
 </div>
+
+

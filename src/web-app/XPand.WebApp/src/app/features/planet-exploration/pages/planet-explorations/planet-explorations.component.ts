@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { PlanetExplorationsService } from '../../core/http/planet-explorations/planet-explorations.service';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { MatDialog } from '@angular/material/dialog';
+import { ViewEditPlanetExplorationDialogComponent } from '../../components/view-edit-planet-exploration-dialog/view-edit-planet-exploration-dialog.component';
+import { PlanetExplorationsService } from '../../../../core/services/planet-explorations/planet-explorations.service';
 
 @Component({
   selector: 'planet-explorations',
@@ -10,8 +12,9 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 export class PlanetExplorationsComponent implements OnInit {
   planetExplorations: any[] = [];
   cardsPerRow: number = 1;
+  selectedCard: any;
 
-  constructor(private planetExplorationsService: PlanetExplorationsService, private breakpointObserver: BreakpointObserver) { }
+  constructor(private planetExplorationsService: PlanetExplorationsService, private breakpointObserver: BreakpointObserver, private dialog: MatDialog) { }
 
   ngOnInit() {
     this.breakpointObserver.observe([Breakpoints.XSmall, Breakpoints.Small, Breakpoints.Medium, Breakpoints.Large, Breakpoints.XLarge ])
@@ -19,7 +22,7 @@ export class PlanetExplorationsComponent implements OnInit {
         this.setCardsPerRow();
       });
 
-    this.planetExplorationsService.getPlanetExplorations().subscribe((data) => {
+    this.planetExplorationsService.planetExplorations.subscribe((data) => {
       this.planetExplorations = data.planetExplorations;
     });
   }
@@ -37,7 +40,7 @@ export class PlanetExplorationsComponent implements OnInit {
     }
   }
   getFlexBasis(): string {
-    return `calc(${100 / this.cardsPerRow}% - 2rem)`; // Adjust the margin value as needed
+    return `calc(${100 / this.cardsPerRow}% - 2rem)`;
   }
   getPlanetImageSrc(planetImage: string) {
     return `data:image/jpeg;base64,${planetImage}`;
@@ -72,5 +75,15 @@ export class PlanetExplorationsComponent implements OnInit {
   }
   getRobots(robots: any[]) {
     return `${robots.slice(0, 3).map(robot => 'T' + robot.userId).join(', ')}${robots.length > 3 ? ' ..' : ''}`;
+  }
+  onCardClick(exploration: any): void {
+    this.selectedCard = exploration;
+    const viewEditPlanetExplorationDialog = this.dialog.open(ViewEditPlanetExplorationDialogComponent, {
+      data: JSON.parse(JSON.stringify(exploration)),
+    });
+
+    viewEditPlanetExplorationDialog.afterClosed().subscribe(() => {
+      this.selectedCard = null;
+    });
   }
 }

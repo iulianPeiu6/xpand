@@ -1,6 +1,5 @@
 ﻿using Application.Interfaces;
 using Application.v1.PlanetExplorations.GetPlanetExplorations.Dtos;
-using Domain.Dtos;
 using Domain.Entities;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
