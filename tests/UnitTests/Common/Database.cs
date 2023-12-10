@@ -1,5 +1,4 @@
-﻿using Domain.Entities;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Persistence.Context;
 
 namespace UnitTests.Common
@@ -10,7 +9,6 @@ namespace UnitTests.Common
 
         public Database()
         {
-            Directory.SetCurrentDirectory("../../../../../src/api/PlanetExplorationManagement.Api/PlanetExplorationManagement.Api");
             var options = new DbContextOptionsBuilder<XPandDbContext>().UseInMemoryDatabase(Guid.NewGuid().ToString()).Options;
             Context = new XPandDbContext(options);
             Context.Database.EnsureCreated();

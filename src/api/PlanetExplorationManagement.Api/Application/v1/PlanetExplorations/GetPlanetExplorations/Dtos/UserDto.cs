@@ -1,4 +1,4 @@
-﻿namespace Domain.Dtos
+﻿namespace Application.v1.PlanetExplorations.GetPlanetExplorations.Dtos
 {
     public class UserDto
     {

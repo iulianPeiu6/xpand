@@ -1,3 +1,7 @@
+.planet-exploration-cards {
+  padding-top: 4rem;
+}
+
 .planet-exploration-card {
   max-width: 25rem;
   justify-content: center;
@@ -41,3 +45,10 @@
 .status-todo {
   color: blue;
 }
+
+.selected-card,
+.selected-card:hover {
+  border: 2px solid #a25661;
+  cursor: pointer;
+}
+
