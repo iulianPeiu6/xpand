@@ -1,4 +1,7 @@
-﻿public interface IAuth0AccessTokenProvider
+﻿namespace Infrastructure.Auth0
 {
-    Task<string> GetToken();
+    public interface IAuth0AccessTokenProvider
+    {
+        Task<string> GetToken();
+    }
 }

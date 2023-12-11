@@ -8,5 +8,6 @@ namespace Application.v1.PlanetExplorations.ApplyPlanetExplorationPatchRequest
     {
         public int PlanetExplorationId { get; set; }
         public JsonPatchDocument<PlanetExploration> PatchDocument { get; set; }
+        public string UpdatedBy { get; set; }
     }
 }

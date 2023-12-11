@@ -20,7 +20,7 @@ namespace Application.v1.PlanetExplorations.ApplyPlanetExplorationPatchRequest
         public async Task<ApplyPlanetExplorationPatchResponse> Handle(ApplyPlanetExplorationPatchRequest request, CancellationToken cancellationToken)
         {
             Validate(request);
-            var planetExploration = await GetPlanetExplorationAsync(request.PlanetExplorationId, cancellationToken).ConfigureAwait(false);
+            var planetExploration = await GetPlanetExplorationAsync(request, cancellationToken).ConfigureAwait(false);
             await UpdatePlanetExplorationAsync(planetExploration, request, cancellationToken).ConfigureAwait(false);
 
             return new ApplyPlanetExplorationPatchResponse
@@ -43,16 +43,21 @@ namespace Application.v1.PlanetExplorations.ApplyPlanetExplorationPatchRequest
             }
         }
 
-        private async Task<PlanetExploration> GetPlanetExplorationAsync(int planetExplorationId, CancellationToken cancellationToken)
+        private async Task<PlanetExploration> GetPlanetExplorationAsync(ApplyPlanetExplorationPatchRequest request, CancellationToken cancellationToken)
         {
             var planetExploration = await dataProvider.Query<PlanetExploration>()
-                .Where(x => x.PlanetExplorationId == planetExplorationId)
+                .Where(x => x.PlanetExplorationId == request.PlanetExplorationId)
                 .FirstOrDefaultAsync(cancellationToken)
                 .ConfigureAwait(false);
 
             if (planetExploration is null)
             {
-                throw new ApiErrorException("PlanetExploration-NotFound", $"PlanetExploration #{planetExplorationId} was not found.", HttpStatusCode.NotFound);
+                throw new ApiErrorException("PlanetExploration-NotFound", $"PlanetExploration #{request.PlanetExplorationId} was not found.", HttpStatusCode.NotFound);
+            }
+
+            if (planetExploration.CaptainId != request.UpdatedBy)
+            {
+                throw new ApiErrorException("Unauthorized-PlanetExploration-Update", $"You can not update PlanetExploration #{request.PlanetExplorationId} because you are not the captain.", HttpStatusCode.Forbidden);
             }
 
             return planetExploration;
@@ -63,6 +68,8 @@ namespace Application.v1.PlanetExplorations.ApplyPlanetExplorationPatchRequest
             try
             {
                 request.PatchDocument.ApplyTo(planetExploration);
+                planetExploration.UpdatedAt = DateTime.UtcNow;
+                planetExploration.UpdatedBy = request.UpdatedBy;
             }
             catch (JsonPatchException ex)
             {
