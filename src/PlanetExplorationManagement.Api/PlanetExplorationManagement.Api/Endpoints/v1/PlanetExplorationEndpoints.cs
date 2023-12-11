@@ -36,15 +36,15 @@ namespace PlanetExplorationManagement.Api.Endpoints.v1
                                 StatusCodes.Status415UnsupportedMediaType);
                     }
                     using var sr = new StreamReader(context.Request.Body);
-                    var rawJsonRequestBody = await sr.ReadToEndAsync();
+                    var rawJsonRequestBody = await sr.ReadToEndAsync().ConfigureAwait(false);
                     var patchDocument = JsonConvert.DeserializeObject<JsonPatchDocument<PlanetExploration>>(rawJsonRequestBody);
-                    var authorizationResult = await authorizationService.AuthorizeAsync(context.User, "CanUpdatePlanetExploration");
+                    var authorizationResult = await authorizationService.AuthorizeAsync(context.User, "CanUpdatePlanetExploration").ConfigureAwait(false);
 
                     if (!authorizationResult.Succeeded)
                     {
                         throw new ApiErrorException("Unauthorized-PlanetExploration-Update", $"You can not update PlanetExploration #{planetExplorationId} because you do not have the necessary permissions.", HttpStatusCode.Forbidden);
                     }
-                    return await mediator.Send(new ApplyPlanetExplorationPatchRequest { PlanetExplorationId = planetExplorationId, PatchDocument = patchDocument }, cancellationToken);
+                    return await mediator.Send(new ApplyPlanetExplorationPatchRequest { PlanetExplorationId = planetExplorationId, PatchDocument = patchDocument }, cancellationToken).ConfigureAwait(false);
                 }
             ).Produces<ApplyPlanetExplorationPatchResponse>();
         }

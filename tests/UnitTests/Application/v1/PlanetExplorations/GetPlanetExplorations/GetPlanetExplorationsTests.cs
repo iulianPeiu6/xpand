@@ -1,7 +1,9 @@
 ﻿using Application.Interfaces;
 using Application.v1.PlanetExplorations.GetPlanetExplorations;
+using Application.v1.PlanetExplorations.GetPlanetExplorations.Dtos;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
 using UnitTests.Common;
 
 namespace PlanetExplorationManagement.Api.UnitTests.Application.v1.PlanetExplorations.GetPlanetExplorations
@@ -9,21 +11,24 @@ namespace PlanetExplorationManagement.Api.UnitTests.Application.v1.PlanetExplora
     [TestClass]
     public class GetPlanetExplorationsTests
     {
-        private readonly IXPandDataProvider dataProvider;
-        private readonly GetPlanetExplorationsRequestHandler handler;
-
-        public GetPlanetExplorationsTests()
-        {
-            var database = new Database();
-            dataProvider = database.Context;
-            handler = new GetPlanetExplorationsRequestHandler(dataProvider);
-        }
-
         [TestMethod]
         public async Task Given_GetPlanetExplorationsRequest_When_HandlerIsCalled_Then_ReturnPlanetExplorations()
         {
             // Arrange
             var request = new GetPlanetExplorationsRequest();
+            var database = new Database();
+            var dataProvider = database.Context;
+            var mockedAuth0Management = new Mock<IAuth0Management>();
+            mockedAuth0Management.Setup(m => m.GetUsersByIdsAsync(It.IsAny<IEnumerable<string>>(), It.IsAny<CancellationToken>())).ReturnsAsync(new List<UserDto>
+            {
+                new UserDto
+                {
+                    UserId = "google-oauth2|102590899082590583530",
+                    FullName = "Iulian Cosmin Peiu"
+                }
+            });
+
+            var handler = new GetPlanetExplorationsRequestHandler(dataProvider, mockedAuth0Management.Object);
 
             // Act
             var result = await handler.Handle(request, CancellationToken.None);
@@ -41,10 +46,12 @@ namespace PlanetExplorationManagement.Api.UnitTests.Application.v1.PlanetExplora
             firstPlanetExploration?.Observations.Should().NotBeNullOrEmpty();
             firstPlanetExploration?.PlanetExplorationStatusId.Should().NotBe(0);
             firstPlanetExploration?.Captain.Should().NotBeNull();
-            firstPlanetExploration?.Captain.UserId.Should().BeGreaterThan(0);
+            firstPlanetExploration?.Captain.UserId.Should().NotBeNullOrEmpty();
+            firstPlanetExploration?.Captain.FullName.Should().NotBeNullOrEmpty();
             firstPlanetExploration?.Robots.Should().NotBeNull();
             firstPlanetExploration?.Robots.Should().HaveCountGreaterThan(0);
-            firstPlanetExploration?.Robots.All(robot => robot.UserId > 0).Should().BeTrue();
+            firstPlanetExploration?.Robots.All(robot => !string.IsNullOrEmpty(robot.UserId)).Should().BeTrue();
+            mockedAuth0Management.Verify(m => m.GetUsersByIdsAsync(It.IsAny<IEnumerable<string>>(), It.IsAny<CancellationToken>()), Times.Once);
         }
     }
 }

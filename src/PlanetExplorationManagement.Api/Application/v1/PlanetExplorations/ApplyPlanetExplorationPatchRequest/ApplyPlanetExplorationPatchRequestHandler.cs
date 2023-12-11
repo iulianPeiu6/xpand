@@ -20,8 +20,8 @@ namespace Application.v1.PlanetExplorations.ApplyPlanetExplorationPatchRequest
         public async Task<ApplyPlanetExplorationPatchResponse> Handle(ApplyPlanetExplorationPatchRequest request, CancellationToken cancellationToken)
         {
             Validate(request);
-            var planetExploration = await GetPlanetExplorationAsync(request.PlanetExplorationId, cancellationToken);
-            await UpdatePlanetExplorationAsync(planetExploration, request, cancellationToken);
+            var planetExploration = await GetPlanetExplorationAsync(request.PlanetExplorationId, cancellationToken).ConfigureAwait(false);
+            await UpdatePlanetExplorationAsync(planetExploration, request, cancellationToken).ConfigureAwait(false);
 
             return new ApplyPlanetExplorationPatchResponse
             {
@@ -47,7 +47,8 @@ namespace Application.v1.PlanetExplorations.ApplyPlanetExplorationPatchRequest
         {
             var planetExploration = await dataProvider.Query<PlanetExploration>()
                 .Where(x => x.PlanetExplorationId == planetExplorationId)
-                .FirstOrDefaultAsync(cancellationToken);
+                .FirstOrDefaultAsync(cancellationToken)
+                .ConfigureAwait(false);
 
             if (planetExploration is null)
             {
@@ -69,7 +70,7 @@ namespace Application.v1.PlanetExplorations.ApplyPlanetExplorationPatchRequest
             }
 
             dataProvider.Update(planetExploration);
-            await dataProvider.SaveChangesAsync(cancellationToken);
+            await dataProvider.SaveChangesAsync(cancellationToken).ConfigureAwait(false);
         }
     }
 }

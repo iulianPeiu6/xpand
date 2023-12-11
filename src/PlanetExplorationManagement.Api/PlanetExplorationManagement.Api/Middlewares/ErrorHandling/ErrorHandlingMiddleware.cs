@@ -1,5 +1,5 @@
-﻿using Domain.Exceptions;
-using Domain;
+﻿using Domain;
+using Domain.Exceptions;
 using System.Net;
 
 namespace PlanetExplorationManagement.Api.Middlewares.ErrorHandling

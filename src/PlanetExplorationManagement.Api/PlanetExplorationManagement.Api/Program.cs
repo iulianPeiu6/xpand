@@ -1,5 +1,6 @@
 using Application;
 using Carter;
+using Infrastructure;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Persistence;
 using PlanetExplorationManagement.Api.Middlewares.ErrorHandling;
@@ -36,6 +37,7 @@ builder.Services.AddAuthorization(options =>
 });
 builder.Services.AddPersistence(builder.Configuration);
 builder.Services.AddApplication();
+builder.Services.AddInfrastructure();
 
 var app = builder.Build();
 
