@@ -59,7 +59,7 @@ namespace Persistence.Context
                     Name = "TAU 23",
                     Image = File.ReadAllBytes("../Persistence/Context/PlanetsImages/TAU23.jpg"),
                     CreatedAt = DateTime.Now.AddDays(-800),
-                    CreatedBy = 1
+                    CreatedBy = "google-oauth2|102590899082590583530"
                 },
                 new Planet
                 {
@@ -67,7 +67,7 @@ namespace Persistence.Context
                     Name = "ZETTA 7",
                     Image = File.ReadAllBytes("../Persistence/Context/PlanetsImages/ZETTA7.jpg"),
                     CreatedAt = DateTime.Now.AddDays(-605),
-                    CreatedBy = 2
+                    CreatedBy = "google-oauth2|102590899082590583530"
                 },
                 new Planet
                 {
@@ -75,7 +75,7 @@ namespace Persistence.Context
                     Name = "SIGMA 17",
                     Image = File.ReadAllBytes("../Persistence/Context/PlanetsImages/SIGMA17.jpg"),
                     CreatedAt = DateTime.Now.AddDays(-506),
-                    CreatedBy = 3
+                    CreatedBy = "google-oauth2|102590899082590583530"
                 },
                 new Planet
                 {
@@ -83,7 +83,7 @@ namespace Persistence.Context
                     Name = "KAPPA 44",
                     Image = File.ReadAllBytes("../Persistence/Context/PlanetsImages/KAPPA44.jpg"),
                     CreatedAt = DateTime.Now.AddDays(-406),
-                    CreatedBy = 3
+                    CreatedBy = "google-oauth2|102590899082590583530"
                 },
                 new Planet
                 {
@@ -91,7 +91,7 @@ namespace Persistence.Context
                     Name = "RUKA 23",
                     Image = File.ReadAllBytes("../Persistence/Context/PlanetsImages/RUKA23.jpg"),
                     CreatedAt = DateTime.Now.AddDays(-306),
-                    CreatedBy = 4
+                    CreatedBy = "google-oauth2|102590899082590583530"
                 });
 
             modelBuilder.Entity<PlanetExploration>().HasData(
@@ -101,9 +101,9 @@ namespace Persistence.Context
                     PlanetId = 1,
                     PlanetExplorationStatusId = Domain.Entities.Common.Enums.PlanetExplorationStatus.Ok,
                     Observations = "While visiting this planet, the robots have uncovered various forms of life",
-                    CaptainId = 1,
+                    CaptainId = "google-oauth2|102590899082590583530",
                     CreatedAt = DateTime.Now.AddDays(-700),
-                    CreatedBy = 1,
+                    CreatedBy = "google-oauth2|102590899082590583530",
                 },
                 new PlanetExploration
                 {
@@ -111,9 +111,9 @@ namespace Persistence.Context
                     PlanetId = 2,
                     PlanetExplorationStatusId = Domain.Entities.Common.Enums.PlanetExplorationStatus.NotOk,
                     Observations = "0.2% nutrients in the soil. Unfortunately than cannot sustain life",
-                    CaptainId = 2,
+                    CaptainId = "google-oauth2|102590899082590583530",
                     CreatedAt = DateTime.Now.AddDays(-565),
-                    CreatedBy = 2
+                    CreatedBy = "google-oauth2|102590899082590583530"
                 },
                 new PlanetExploration
                 {
@@ -122,7 +122,7 @@ namespace Persistence.Context
                     PlanetExplorationStatusId = Domain.Entities.Common.Enums.PlanetExplorationStatus.EnRoute,
                     Observations = "No description yet :/",
                     CreatedAt = DateTime.Now.AddDays(-500),
-                    CreatedBy = 3
+                    CreatedBy = "google-oauth2|102590899082590583530"
                 },
                 new PlanetExploration
                 {
@@ -130,9 +130,9 @@ namespace Persistence.Context
                     PlanetId = 4,
                     PlanetExplorationStatusId = Domain.Entities.Common.Enums.PlanetExplorationStatus.Ok,
                     Observations = "We've found another sapient species and have engaged in communication",
-                    CaptainId = 3,
+                    CaptainId = "google-oauth2|102590899082590583530",
                     CreatedAt = DateTime.Now.AddDays(-400),
-                    CreatedBy = 3
+                    CreatedBy = "google-oauth2|102590899082590583530"
                 },
                 new PlanetExploration
                 {
@@ -140,9 +140,9 @@ namespace Persistence.Context
                     PlanetId = 5,
                     PlanetExplorationStatusId = Domain.Entities.Common.Enums.PlanetExplorationStatus.NotOk,
                     Observations = "Just a huge floating rock",
-                    CaptainId = 4,
+                    CaptainId = "google-oauth2|102590899082590583530",
                     CreatedAt = DateTime.Now.AddDays(-300),
-                    CreatedBy = 4
+                    CreatedBy = "google-oauth2|102590899082590583530"
                 });
 
             modelBuilder.Entity<PlanetExplorationRobot>().HasData(

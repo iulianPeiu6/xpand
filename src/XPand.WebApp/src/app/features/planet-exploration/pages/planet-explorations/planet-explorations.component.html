@@ -30,7 +30,7 @@
           </div>
           <div fxLayout="column">
             <div *ngIf="exploration.captain && exploration.captain.userId" class="captain-info">
-              <b>by captain </b> C{{ exploration.captain.userId }}
+              <b>by captain </b> {{ exploration.captain.fullName }}
             </div>
             <div *ngIf="exploration.robots && exploration.robots.length" class="robots-info">
               <b>Robots: </b> {{ getRobots(exploration.robots) }}

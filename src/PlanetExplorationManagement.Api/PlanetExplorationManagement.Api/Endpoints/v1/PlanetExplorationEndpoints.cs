@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Net;
+using System.Security.Claims;
 
 namespace PlanetExplorationManagement.Api.Endpoints.v1
 {
@@ -36,15 +37,22 @@ namespace PlanetExplorationManagement.Api.Endpoints.v1
                                 StatusCodes.Status415UnsupportedMediaType);
                     }
                     using var sr = new StreamReader(context.Request.Body);
-                    var rawJsonRequestBody = await sr.ReadToEndAsync();
+                    var rawJsonRequestBody = await sr.ReadToEndAsync().ConfigureAwait(false);
                     var patchDocument = JsonConvert.DeserializeObject<JsonPatchDocument<PlanetExploration>>(rawJsonRequestBody);
-                    var authorizationResult = await authorizationService.AuthorizeAsync(context.User, "CanUpdatePlanetExploration");
+                    var authorizationResult = await authorizationService.AuthorizeAsync(context.User, "CanUpdatePlanetExploration").ConfigureAwait(false);
 
                     if (!authorizationResult.Succeeded)
                     {
                         throw new ApiErrorException("Unauthorized-PlanetExploration-Update", $"You can not update PlanetExploration #{planetExplorationId} because you do not have the necessary permissions.", HttpStatusCode.Forbidden);
                     }
-                    return await mediator.Send(new ApplyPlanetExplorationPatchRequest { PlanetExplorationId = planetExplorationId, PatchDocument = patchDocument }, cancellationToken);
+                    var userId = context.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+                    var request = new ApplyPlanetExplorationPatchRequest 
+                    { 
+                        PlanetExplorationId = planetExplorationId, 
+                        PatchDocument = patchDocument,
+                        UpdatedBy = userId
+                    };
+                    return await mediator.Send(request, cancellationToken).ConfigureAwait(false);
                 }
             ).Produces<ApplyPlanetExplorationPatchResponse>();
         }
