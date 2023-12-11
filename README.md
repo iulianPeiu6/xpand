@@ -5,23 +5,34 @@
 ## Requirements
 [See requirements](https://github.com/iulianPeiu6/xpand/blob/master/docs/requirements.pdf)
 
+## Keywords
+
+Minimal API .NET, API Guidelines, Async Programing, Error Handling, Clean Architecture, Unit Tests 
+
+Angular, Angular Material
+
+Auth0, Github Actions - CI/CD, SonarCloud, 
+
 ### DONE:
 - Init Repo. Init Solution.
 - Configure CI. Add Quality Check github workflow action (Build, Test, SonarCloud Analysis).
 - [DB Modeling](https://github.com/iulianPeiu6/xpand/blob/master/docs/db-diagram.png). [dbdiagram.io](https://dbdiagram.io/d/6568b9433be149578711d7fe)
-
-### TODO: 
 - Create PlanetExplorationManagement API:
   - Add health check
   - GET /v1/planet-explorations
-  - GET /v1/planet-explorations/{planetExplorationId}
-  - POST /v1/planet-explorations
   - PATCH /v1/planet-explorations/{planetExplorationId}
   - Add Authorization
   - Add Unit/Integration Tests
-- Create SPA UI:
-  - Add auth0
+-  Create SPA UI:
+  - Integrate auth0
   - List Planet Explorations
-  - Create Planet Exploration
   - Update Planet Exploration
-  - Progresive & Paralel Loading
+
+### TODO: 
+- Add skeleton loaders on SPA
+- Improve Style
+- Add Login popup warning when user clicks on planet exploration card and tries to edit when is not logged in
+- Disable Save button on planet exploration when user is not logged in or does not have the necesary permissions
+- Add Swagger Doc on API
+- Add more Unit Tests
+- Inovations: Async communication between robots and captain (SignalR, Service Bus, Queues, etc)
